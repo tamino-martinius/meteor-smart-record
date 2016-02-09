@@ -493,7 +493,9 @@ profile.name === 'Foo Bar';
 
 ## Changelog
 
-`2016-02-09` Initial commit with the following functions:
+`0.0.2` `2016-02-09` Released package on atmosphere
+
+`0.0.1` `2016-02-09` Initial commit with the following functions:
 
 * `.modelName()`
 * `.scope(options)`
