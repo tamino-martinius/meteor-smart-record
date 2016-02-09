@@ -22,6 +22,7 @@ Smart Record gives you the ability to:
 * Automatically generate `scopes` from schema `Address.findByCountry('Germany')`, `Address.havingCountry('Germany').all()`
 * There are already many **tests**, but not every test case is covered.
 * Improve the code **documentation**.
+* **Migrations**
 * Record **versioning**
 * Support for **other databases** like Postgres
 
