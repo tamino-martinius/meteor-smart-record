@@ -162,6 +162,14 @@ User = class User extends SmartModel {
 
 user.addresses().all();
 address = user.addresses().create();
+
+User = class User extends SmartModel {
+  static hasMany() {
+    return {
+      addresses: {dependent: 'destroy'}
+    }
+  }
+};
 ~~~
 
 ### Has One
@@ -176,6 +184,14 @@ User = class User extends SmartModel {
 };
 
 user.profile;
+
+User = class User extends SmartModel {
+  static hasOne() {
+    return {
+      profile: {dependent: 'destroy'}
+    }
+  }
+};
 ~~~
 
 ## Scopes
@@ -514,10 +530,26 @@ profile.name === 'Foo Bar';
 
 ## Changelog
 
-`0.0.3` `2016-02-10` Allow functions for default values, added new functions:
+`0.0.3` `2016-02-10`
 
-* `.hasAny(selector)`
-* `.isEmpty(selector)`
+* Added functions for default values
+  ~~~js
+  List = class List extends SmartModel {
+    static schema() {
+      return {
+        name: {default: this.defaultName}
+      }
+    }
+
+    static defaultName() {
+      // ...
+    }
+  }
+  ~~~
+* Added `dependent: 'destroy'` for `hasOne` and `hasMany` relations
+* New functions:
+  * `.hasAny(selector)`
+  * `.isEmpty(selector)`
 
 `0.0.2` `2016-02-09` Released package on atmosphere
 
