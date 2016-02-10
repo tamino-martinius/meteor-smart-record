@@ -547,6 +547,9 @@ profile.name === 'Foo Bar';
   }
   ~~~
 * Added `dependent: 'destroy'` for `hasOne` and `hasMany` relations
+* Added callbacks on `save`, `update`, `create`, `destroy`
+  * `beforeCommit`
+  * `afterCommit`
 * New functions:
   * `.hasAny(selector)`
   * `.isEmpty(selector)`
