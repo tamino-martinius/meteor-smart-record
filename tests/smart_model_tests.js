@@ -934,9 +934,11 @@ group('SmartModel#save()', (test) => {
 group('SmartModel#destroy()', (test) => {
   context = 'when there are some records';
   {
-    const address1 = Address.create({street: 'a'});
-    const address2 = Address.create({street: 'b'});
-    const address3 = Address.create({street: 'c'});
+    const user = User.create();
+    const profile = Profile.create({userId: user.id, lastname: 'test'});
+    const address1 = Address.create({street: 'a', userId: user.id});
+    const address2 = Address.create({street: 'b', userId: user.id});
+    const address3 = Address.create({street: 'c', userId: user.id});
     test.isTrue(address1.isPersistent, context);
     test.isTrue(address2.isPersistent, context);
     test.isTrue(address3.isPersistent, context);
@@ -946,6 +948,14 @@ group('SmartModel#destroy()', (test) => {
     {
       address1.destroy();
       test.equal(Address.count(), 2, context);
+    }
+
+    it = 'also removes dependent records';
+    {
+      user.destroy();
+      test.equal(User.count(), 0, context);
+      test.equal(Address.count(), 0, context);
+      test.equal(Profile.count(), 0, context);
     }
   }
 });

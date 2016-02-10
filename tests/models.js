@@ -29,13 +29,13 @@ base.User = class User extends SmartModel {
 
   static hasOne() {
     return {
-      profile: {}
+      profile: {dependent: 'destroy'}
     }
   }
 
   static hasMany() {
     return {
-      addresses: {}
+      addresses: {dependent: 'destroy'}
     }
   }
 }
