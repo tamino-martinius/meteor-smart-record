@@ -45,6 +45,8 @@ Smart Record gives you the ability to:
   * [Cursor](#cursor)
   * [Where](#where)
   * [Count](#count)
+  * [HasAny](#hasany)
+  * [IsEMpty](#isempty)
   * [First](#first)
   * [Last](#last)
 * [Limit Access](#limit-access)
@@ -198,8 +200,8 @@ Profile = class Profile extends SmartModel {
     return this.scope({selector: {age: {$gt: 18}}});
   }
 
-  get name() {
-    return `${this.firstName} ${this.lastName}`;
+  static withName(name) {
+    return this.scope({selector: {name: name}});
   }
 }
 ~~~
@@ -263,6 +265,24 @@ Retruns the count of the matching records (equivalent to find.count from Meteor.
 ~~~js
 Address.count(selector, options);
 Profile.males().young().count(selector, options);
+~~~
+
+### HasAny
+
+Checks if there is any matching item with selector.
+
+~~~js
+Address.hasAny(selector);
+Profile.males().young().hasAny(selector);
+~~~
+
+### IsEmpty
+
+Checks if there is no matching item with selector.
+
+~~~js
+Address.isEmpty(selector);
+Profile.males().young().isEmpty(selector);
 ~~~
 
 ### First
@@ -493,6 +513,11 @@ profile.name === 'Foo Bar';
 ~~~
 
 ## Changelog
+
+`0.0.3` `2016-02-10` Allow functions for default values, added new functions:
+
+* `.hasAny(selector)`
+* `.isEmpty(selector)`
 
 `0.0.2` `2016-02-09` Released package on atmosphere
 
