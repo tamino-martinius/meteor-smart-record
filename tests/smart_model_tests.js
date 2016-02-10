@@ -408,6 +408,49 @@ group('SmartModel.where()', (test) => {
   }
 });
 
+group('SmartModel.count()', (test) => {
+  let selector, options;
+  const subject = function() {
+    return Address.count(selector, options);
+  }
+
+  it = 'returns 0';
+  test.equal(subject(), 0, it);
+
+  context = 'when there are some records';
+  {
+    const address1 = Address.create({street: 'a'});
+    const address2 = Address.create({street: 'b'});
+    const address3 = Address.create({street: 'c'});
+    test.isTrue(address1.isPersistent, context);
+    test.isTrue(address2.isPersistent, context);
+    test.isTrue(address3.isPersistent, context);
+
+    it = 'retruns the count of all records';
+    test.equal(subject(), 3, it);
+
+    context = 'when an selector is present';
+    {
+      selector = {street: {$gt: 'a'}};
+
+      it = 'retruns the count of matching records';
+      {
+        test.equal(subject(), 2, it);
+      }
+    }
+
+    context = 'when an selector does not match anything';
+    {
+      selector = {street: 'foo'};
+
+      it = 'retruns 0';
+      {
+        test.equal(subject(), 0, it);
+      }
+    }
+  }
+});
+
 group('SmartModel.first()', (test) => {
   let selector, options;
   const subject = function() {
