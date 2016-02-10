@@ -13,7 +13,6 @@ Package.onUse(function (api) {
   api.versionsFrom("METEOR@1.2.1");
   api.use('mongo'                                   , cs);
   api.use('dburles:mongo-collection-instances@0.1.3', cs);
-  api.use('dburles:eslint@1.0.1'                    , cs);
   api.use('underscorestring:underscore.string@3.2.3', cs);
   api.use('underscore'                              , cs);
   api.use('ecmascript'                              , cs);
