@@ -1,7 +1,7 @@
 Package.describe({
   name: "zaku:smart-record",
   summary: "Rails like models using ES6.",
-  version: "0.0.2",
+  version: "0.0.3",
   git: "https://github.com/tamino-martinius/meteor-smart-record.git"
 });
 
