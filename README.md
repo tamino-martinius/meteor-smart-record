@@ -533,7 +533,10 @@ profile.name === 'Foo Bar';
 
 `0.0.3` `2016-02-10`
 
-* Added functions for default values
+* Has Many scopes are now functions instead of properties to be consistent with custom scopes.
+* Added todos example.
+* Added functions for default values:
+
   ~~~js
   List = class List extends SmartModel {
     static schema() {
@@ -547,8 +550,8 @@ profile.name === 'Foo Bar';
     }
   }
   ~~~
-* Added `dependent: 'destroy'` for `hasOne` and `hasMany` relations
-* Added callbacks on `save`, `update`, `create`, `destroy`
+* Added `dependent: 'destroy'` for `hasOne` and `hasMany` relations.
+* Added callbacks on `save`, `update`, `create`, `destroy`:
   * `beforeCommit`
   * `afterCommit`
 * New functions:
