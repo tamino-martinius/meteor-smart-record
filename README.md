@@ -10,7 +10,7 @@ Smart Record gives you the ability to:
 * **Validate** models before they get persisted to the database.
 * Perform database operations in an **object-oriented** fashion.
 
-***Whats next / Currently missing / Where can i contribute***
+## Whats next / Currently missing / Where can i contribute
 * Fix **typos**
 * Add more **examples**
 * Add **property accessors** which are read/write but not stored to the database

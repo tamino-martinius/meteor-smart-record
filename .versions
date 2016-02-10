@@ -24,7 +24,7 @@ htmljs@1.0.5
 id-map@1.0.4
 insecure@1.0.4
 jquery@1.11.4
-local-test:zaku:smart-record@0.0.2
+local-test:zaku:smart-record@0.0.3
 logging@1.0.8
 meteor@1.1.10
 minimongo@1.0.10
@@ -47,4 +47,4 @@ underscore@1.0.4
 underscorestring:underscore.string@3.2.3
 webapp@1.2.3
 webapp-hashing@1.0.5
-zaku:smart-record@0.0.2
+zaku:smart-record@0.0.3
