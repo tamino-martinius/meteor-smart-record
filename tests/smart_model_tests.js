@@ -494,6 +494,49 @@ group('SmartModel.hasAny()', (test) => {
   }
 });
 
+group('SmartModel.isEmpty()', (test) => {
+  let selector, options;
+  const subject = function() {
+    return Address.isEmpty(selector);
+  }
+
+  it = 'returns true';
+  test.isTrue(subject(), it);
+
+  context = 'when there are some records';
+  {
+    const address1 = Address.create({street: 'a'});
+    const address2 = Address.create({street: 'b'});
+    const address3 = Address.create({street: 'c'});
+    test.isTrue(address1.isPersistent, context);
+    test.isTrue(address2.isPersistent, context);
+    test.isTrue(address3.isPersistent, context);
+
+    it = 'retruns false';
+    test.isFalse(subject(), it);
+
+    context = 'when an selector is present';
+    {
+      selector = {street: {$gt: 'a'}};
+
+      it = 'retruns false';
+      {
+        test.isFalse(subject(), it);
+      }
+    }
+
+    context = 'when an selector does not match anything';
+    {
+      selector = {street: 'foo'};
+
+      it = 'retruns true';
+      {
+        test.isTrue(subject(), it);
+      }
+    }
+  }
+});
+
 group('SmartModel.first()', (test) => {
   let selector, options;
   const subject = function() {
