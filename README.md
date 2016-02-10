@@ -12,7 +12,7 @@ Smart Record gives you the ability to:
 
 ***Whats next / Currently missing / Where can i contribute***
 * Fix **typos**
-* Create an proper **example**
+* Add more **examples**
 * `where`/`all` calls should be cached and refreshed by `reload()`
 * `includes` prefetches relations with two db queries *(fetch records => pluck ids => fetch related records by ids)* instead of one query per related model.
 
