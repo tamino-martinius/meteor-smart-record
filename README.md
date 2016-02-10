@@ -99,7 +99,7 @@ Initializes new record from relation while maintaining the current scope.
 address = Address.build({street: '1st street'});
 address.isNew === true;
 
-address = user.addresses.build();
+address = user.addresses().build();
 address.userId === user.id;
 };
 ~~~

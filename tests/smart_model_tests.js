@@ -121,7 +121,7 @@ group('SmartModel.hasMany()', (test) => {
       test.isTrue(address.isPersistent, context);
 
       it = 'does not return the address through relation';
-      test.equal(user.addresses.count(), 0, it);
+      test.equal(user.addresses().count(), 0, it);
 
       context = 'when there are multiple related addresses';
       {
@@ -132,9 +132,9 @@ group('SmartModel.hasMany()', (test) => {
 
         it = 'retrun the addresses related to the user';
         {
-          test.equal(user.addresses.count(), 2, it);
-          test.equal(user.addresses.first().id, address1.id, it);
-          test.equal(user.addresses.last().id, address2.id, it);
+          test.equal(user.addresses().count(), 2, it);
+          test.equal(user.addresses().first().id, address1.id, it);
+          test.equal(user.addresses().last().id, address2.id, it);
         }
       }
     }
