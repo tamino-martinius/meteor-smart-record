@@ -725,8 +725,11 @@ group('SmartModel#isValid', (test) => {
 
 group('SmartModel#id', (test) => {
   let model;
-  const subject = function() {
+  const subject1 = function() {
     return model.id;
+  }
+  const subject2 = function() {
+    return model.addressId;
   }
 
   context = 'when a new model is build';
@@ -734,12 +737,18 @@ group('SmartModel#id', (test) => {
     model = Address.build();
 
     it = 'is undefined';
-    test.isUndefined(subject(), it);
+    {
+      test.isUndefined(subject1(), it);
+      test.isUndefined(subject2(), it);
+    }
 
     model.save();
 
     it = 'returns the _id of the model';
-    test.equal(subject(), model._id, it);
+    {
+      test.equal(subject1(), model._id, it);
+      test.equal(subject2(), model._id, it);
+    }
   }
 });
 
