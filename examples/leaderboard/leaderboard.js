@@ -5,7 +5,7 @@ Player = class Player extends SmartModel {
   static schema() {
     return {
       name: {type: String},
-      score: {type: Number}
+      score: {type: Number, default: () => _.random(10) * 5}
     }
   }
 
@@ -50,10 +50,7 @@ if (Meteor.isServer) {
         "Carl Friedrich Gauss",
         "Nikola Tesla",
         "Claude Shannon"
-      ].map(x => Player.create({
-        name: name,
-        score: Math.floor(_.random(10)) * 5
-      }));
+      ].map(name => Player.create({name}));
     }
   });
 }
