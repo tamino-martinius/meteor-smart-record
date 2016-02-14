@@ -10,7 +10,7 @@ Smart Record gives you the ability to:
 * **Validate** models before they get persisted to the database.
 * Perform database operations in an **object-oriented** fashion.
 
-## Whats next / Currently missing / Where can i contribute
+### Roadmap / Where can i contribute
 * Fix **typos**
 * Add more **examples**
 * Add **property accessors** which are read/write but not stored to the database
@@ -377,6 +377,15 @@ Even when MongoDB is using _id as property saving the identifier. With `id` you 
 address.id === address._id;
 ~~~
 
+There is also an getter for the id which is named like the model name. This is really helpful for nested urls.
+
+~~~js
+route = '/list/:listId/item/:itemId';
+
+list = List.find({listId});
+item = Item.find({itemId});
+~~~
+
 ### itemType
 
 The itemType is the same as modelName - just on an instance level.
@@ -530,6 +539,10 @@ profile.name === 'Foo Bar';
 ~~~
 
 ## Changelog
+
+`0.0.4` `2016-02-14`
+
+Added id alias (eg. `List.listId`) to instance and selector `List.find({listId})`
 
 `0.0.3` `2016-02-10`
 
