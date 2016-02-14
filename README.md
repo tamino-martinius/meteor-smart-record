@@ -540,6 +540,10 @@ profile.name === 'Foo Bar';
 
 ## Changelog
 
+`0.0.4` `2016-02-14`
+
+Added id alias (eg. `List.listId`) to instance and selector `List.find({listId})`
+
 `0.0.3` `2016-02-10`
 
 * Has Many scopes are now functions instead of properties to be consistent with custom scopes.
