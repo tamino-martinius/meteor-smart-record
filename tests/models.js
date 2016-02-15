@@ -17,13 +17,13 @@ Company.allow({
 base.User = class User extends SmartModel {
   static schema() {
     return {
-      username: {type: String, required: true, minLength: 2, maxLength: 20}
+      username: {type: String, min: 2, max: 20}
     }
   }
 
   static belongsTo() {
     return {
-      company: {}
+      company: {optional: true}
     }
   }
 
@@ -49,17 +49,17 @@ User.allow({
 base.Address = class Address extends SmartModel {
   static schema() {
     return {
-      street: {type: String, default: ''},
-      postalCode: {type: String, default: ''},
-      city: {type: String, default: ''},
-      country: {type: String, default: 'Germany'},
-      note: {type: String, default: ''}
+      street: {type: String, optional: true, defaultValue: ''},
+      postalCode: {type: String, optional: true, defaultValue: ''},
+      city: {type: String, optional: true, defaultValue: ''},
+      country: {type: String, optional: true, defaultValue: 'Germany'},
+      note: {type: String, optional: true, defaultValue: ''}
     }
   }
 
   static belongsTo() {
     return {
-      user: {}
+      user: {optional: true}
     }
   }
 }
@@ -73,18 +73,18 @@ Address.allow({
 base.Profile = class Profile extends SmartModel {
   static schema() {
     return {
-      gender: {type: String},
-      firstname: {type: String},
-      lastname: {type: String, required: true, minLength: 1},
-      age: {type: Number},
-      country: {type: String, default: 'Germany'},
-      note: {type: String, default: ''}
+      gender: {type: String, optional: true, defaultValue: ''},
+      firstname: {type: String, optional: true, defaultValue: ''},
+      lastname: {type: String, min: 1},
+      age: {type: Number, optional: true},
+      country: {type: String, optional: true, defaultValue: 'Germany'},
+      note: {type: String, optional: true, defaultValue: ''}
     }
   }
 
   static belongsTo() {
     return {
-      user: {}
+      user: {optional: true}
     }
   }
 

@@ -870,7 +870,8 @@ group('SmartModel#validate()', (test) => {
     {
       model = Profile.build();
       model.save();
-      test.length(model.errors, 2, it);
+      test.length(model.errors, 1, it);
+      test.equal(model.errors[0].type, 'required', it);
     }
 
     it = 'is one error less when lastname is present';
@@ -878,6 +879,7 @@ group('SmartModel#validate()', (test) => {
       model.lastname = '';
       model.save();
       test.length(model.errors, 1, it);
+      test.equal(model.errors[0].type, 'minString', it);
     }
 
     it = 'returns no error if lastname is valid';
