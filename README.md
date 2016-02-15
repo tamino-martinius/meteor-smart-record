@@ -101,7 +101,6 @@ address.isNew === true;
 
 address = user.addresses().build();
 address.userId === user.id;
-};
 ~~~
 
 ### Create
