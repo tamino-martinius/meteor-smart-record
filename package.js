@@ -12,9 +12,10 @@ cs = [c, s];
 Package.onUse(function (api) {
   api.versionsFrom("METEOR@1.2.1");
   api.use('mongo'                                   , cs);
-  api.use('dburles:mongo-collection-instances@0.1.3', cs);
   api.use('underscorestring:underscore.string@3.2.3', cs);
   api.use('aldeed:simple-schema@1.5.3'              , cs);
+  api.use('aldeed:collection2@2.8.0'                , cs);
+  api.use('dburles:mongo-collection-instances@0.1.3', cs);
   api.use('underscore'                              , cs);
   api.use('ecmascript'                              , cs);
 
@@ -28,7 +29,6 @@ Package.onTest(function (api) {
   api.use('tinytest'                                ,  s);
   api.use('ecmascript'                              ,  s);
   api.use('underscore'                              ,  s);
-  api.use('dburles:eslint@1.0.1'                    ,  s);
   api.use('zaku:smart-record'                       ,  s);
 
   api.add_files('tests/models.js'                   ,  s);
