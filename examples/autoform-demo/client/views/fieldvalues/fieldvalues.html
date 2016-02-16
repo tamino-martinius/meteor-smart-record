@@ -21,16 +21,24 @@
           <h4>JavaScript</h4>
         </div>
         <div class="panel-body">
-<pre class="pre-scrollable">FieldValueIs = new Mongo.Collection("FieldValueIs");
-FieldValueIs.attachSchema(new SimpleSchema({
-  a: {
-    type: String,
-    allowedValues: ["foo", "bar"]
-  },
-  b: {
-    type: String
+<pre class="pre-scrollable">FieldValueIs = class FieldValueIs extends SmartModel {
+  static schema() {
+    return {
+      a: {
+        type: String,
+        allowedValues: ["foo", "bar"]
+      },
+      b: {
+        type: String
+      },
+      c: {
+        type: [String],
+        minCount: 1,
+        maxCount: 3
+      }
+    };
   }
-}));</pre>
+};</pre>
         </div>
       </div>
     </div>
@@ -45,7 +53,7 @@ FieldValueIs.attachSchema(new SimpleSchema({
       </div>
     </div>
   </div>
-  
+
   <h2>afFieldValueContains Helper</h2>
   <p>In this example, a "B" field is displayed only when the current value of the "A" field contains "foo".</p>
   <div class="row">
@@ -68,16 +76,19 @@ FieldValueIs.attachSchema(new SimpleSchema({
           <h4>JavaScript</h4>
         </div>
         <div class="panel-body">
-<pre class="pre-scrollable">FieldValueContains = new Mongo.Collection("FieldValueContains");
-FieldValueContains.attachSchema(new SimpleSchema({
-  a: {
-    type: [String],
-    allowedValues: ["foo", "bar"]
-  },
-  b: {
-    type: String
+<pre class="pre-scrollable">FieldValueContains = class FieldValueContains extends SmartModel {
+  static schema() {
+    return {
+      a: {
+        type: [String],
+        allowedValues: ["foo", "bar"]
+      },
+      b: {
+        type: String
+      }
+    };
   }
-}));</pre>
+};</pre>
         </div>
       </div>
     </div>
@@ -115,19 +126,27 @@ FieldValueContains.attachSchema(new SimpleSchema({
           <h4>JavaScript</h4>
         </div>
         <div class="panel-body">
-<pre class="pre-scrollable">FieldValueIs = new Mongo.Collection("FieldValueIs");
-FieldValueIs.attachSchema(new SimpleSchema({
-  a: {
-    type: String,
-    allowedValues: ["foo", "bar"]
-  },
-  b: {
-    type: String
+<pre class="pre-scrollable">FieldValueIs = class FieldValueIs extends SmartModel {
+  static schema() {
+    return {
+      a: {
+        type: String,
+        allowedValues: ["foo", "bar"]
+      },
+      b: {
+        type: String
+      },
+      c: {
+        type: [String],
+        minCount: 1,
+        maxCount: 3
+      }
+    };
   }
-}));
+};
 
 Template.registerHelper("currentFieldValue", function (fieldName) {
-  return AutoForm.getFieldValue("reactiveCurrentValueForm", fieldName) || "not selected";
+  return AutoForm.getFieldValue(fieldName) || "not selected";
 });
 
 Template.registerHelper("currentFieldValue2", function (fieldName) {
@@ -151,27 +170,27 @@ Template.registerHelper("currentFieldValue2", function (fieldName) {
 
 <template name="isForm">
   {{#autoForm collection="FieldValueIs" type="insert" id="FieldValueIsForm"}}
-  {{> afQuickField name="a" options="allowed" noselect=true}}
-  {{#if afFieldValueIs name="a" value="foo"}}
-  {{> afQuickField name="b"}}
-  {{/if}}
+    {{> afQuickField name="a" options="allowed" noselect=true}}
+    {{#if afFieldValueIs name="a" value="foo"}}
+      {{> afQuickField name="b"}}
+    {{/if}}
   {{/autoForm}}
 </template>
 
 <template name="containsForm">
   {{#autoForm collection="FieldValueContains" type="insert" id="FieldValueContainsForm"}}
-  {{> afQuickField name="a" options="allowed" noselect=true}}
-  {{#if afFieldValueContains name="a" value="foo"}}
-  {{> afQuickField name="b"}}
-  {{/if}}
+    {{> afQuickField name="a" options="allowed" noselect=true}}
+    {{#if afFieldValueContains name="a" value="foo"}}
+      {{> afQuickField name="b"}}
+    {{/if}}
   {{/autoForm}}
 </template>
 
 <template name="reactiveCurrentValue">
   {{#autoForm collection="FieldValueIs" type="insert" id="reactiveCurrentValueForm"}}
-  {{> afQuickField name="a" options="allowed" noselect=true}}
-  {{> afQuickField name="c"}}
-  <p>The current value of the "A" field is {{currentFieldValue "a"}}.</p>
-  <p>The current value of the "C" field is {{currentFieldValue2 "c"}}.</p>
+    {{> afQuickField name="a" options="allowed" noselect=true}}
+    {{> afQuickField name="c"}}
+    <p>The current value of the "A" field is {{currentFieldValue "a"}}.</p>
+    <p>The current value of the "C" field is {{currentFieldValue2 "c"}}.</p>
   {{/autoForm}}
 </template>
