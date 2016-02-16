@@ -50,14 +50,16 @@ List = class List extends SmartModel {
   }
 
   static defaultName() {
-    let nextLetter = 'A', nextName = 'List ' + nextLetter;
-    while (List.withName(nextName).hasAny()) {
-      // not going to be too smart here, can go past Z
-      nextLetter = String.fromCharCode(nextLetter.charCodeAt(0) + 1);
-      nextName = 'List ' + nextLetter;
-    }
+    if (this.value === undefined) {
+      let nextLetter = 'A', nextName = 'List ' + nextLetter;
+      while (List.withName(nextName).hasAny()) {
+        // not going to be too smart here, can go past Z
+        nextLetter = String.fromCharCode(nextLetter.charCodeAt(0) + 1);
+        nextName = 'List ' + nextLetter;
+      }
 
-    return nextName;
+      return nextName;
+    }
   }
 
   get isPublic() {
