@@ -1,8 +1,4 @@
-Schemas = {};
-
-Meteor.isClient && Template.registerHelper("Schemas", Schemas);
-
-Person = Schemas.Person = class Person extends SmartModel {
+Person = class Person extends SmartModel {
   static schema() {
     return {
       firstName: {
@@ -20,7 +16,7 @@ Person = Schemas.Person = class Person extends SmartModel {
   }
 };
 
-Item = Schemas.Item = class Item extends SmartModel {
+Item = class Item extends SmartModel {
   static schema() {
     return {
       name: {
@@ -34,7 +30,7 @@ Item = Schemas.Item = class Item extends SmartModel {
   }
 };
 
-Select = Schemas.Select = class Select extends SmartModel {
+Select = class Select extends SmartModel {
   static schema() {
     return {
       favoriteYear: {
@@ -44,7 +40,7 @@ Select = Schemas.Select = class Select extends SmartModel {
   }
 };
 
-SelectMultiple = Schemas.SelectMultiple = class SelectMultiple extends SmartModel {
+SelectMultiple = class SelectMultiple extends SmartModel {
   static schema() {
     return {
       favoriteYears: {
@@ -54,7 +50,10 @@ SelectMultiple = Schemas.SelectMultiple = class SelectMultiple extends SmartMode
   }
 };
 
-FieldsExamples = Schemas.FieldsExamples = class FieldsExamples extends SmartModel {
+FieldsExamples = class FieldsExamples extends SmartModel {
+  static get foo() {
+    return this.simpleSchema();
+  }
   static schema() {
     return {
       name: {
@@ -107,7 +106,7 @@ FieldsExamples = Schemas.FieldsExamples = class FieldsExamples extends SmartMode
   }
 };
 
-PersonWithContacts = Schemas.PersonWithContacts = class PersonWithContacts extends SmartModel {
+PersonWithContacts = class PersonWithContacts extends SmartModel {
   static schema() {
     return {
       firstName: {
