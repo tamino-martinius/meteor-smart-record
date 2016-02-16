@@ -11,6 +11,10 @@ cs = [c, s];
 
 Package.onUse(function (api) {
   api.versionsFrom("METEOR@1.2.1");
+  api.imply('aldeed:simple-schema'                  , cs);
+  api.imply('aldeed:collection2'                    , cs);
+  api.imply('dburles:mongo-collection-instances'    , cs);
+
   api.use('mongo'                                   , cs);
   api.use('underscorestring:underscore.string@3.2.3', cs);
   api.use('aldeed:simple-schema@1.5.3'              , cs);
