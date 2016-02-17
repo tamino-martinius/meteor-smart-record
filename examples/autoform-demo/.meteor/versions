@@ -2,17 +2,8 @@ accounts-base@1.2.2
 accounts-password@1.1.4
 accounts-ui@1.1.6
 accounts-ui-unstyled@1.1.8
-aldeed:autoform@5.7.1
-aldeed:autoform-bs-button-group-input@1.0.2
-aldeed:autoform-bs-datepicker@1.1.1
-aldeed:autoform-bs-datetimepicker@1.0.6
-aldeed:autoform-select2@2.0.2
-aldeed:collection2@2.8.0
-aldeed:collection2-core@1.0.0
 aldeed:delete-button@1.0.0
 aldeed:moment-timezone@0.4.0
-aldeed:schema-deny@1.0.1
-aldeed:schema-index@1.0.1
 aldeed:simple-schema@1.5.3
 aldeed:template-extension@3.4.3
 autoupdate@1.2.4
@@ -30,8 +21,6 @@ callback-hook@1.0.4
 check@1.1.0
 chhib:selectize-bootstrap-3@0.0.1
 coffeescript@1.0.11
-comerc:autoform-selectize@2.2.3
-comerc:autoform-typeahead@1.0.2
 comerc:bs-typeahead@1.0.2
 dburles:collection-helpers@1.0.4
 dburles:mongo-collection-instances@0.1.3
@@ -86,7 +75,6 @@ npm-mongo@1.4.39_1
 observe-sequence@1.0.7
 ordered-dict@1.0.4
 promise@0.5.1
-raix:eventemitter@0.1.3
 rajit:bootstrap3-datepicker@1.4.1
 random@1.0.5
 rate-limit@1.0.0
@@ -112,8 +100,8 @@ ui@1.0.8
 underscore@1.0.4
 underscorestring:underscore.string@3.2.3
 url@1.0.5
-vazco:universe-autoform-select@0.1.15
 webapp@1.2.3
 webapp-hashing@1.0.5
+zaku:smart-form@5.8.1
 zaku:smart-record@0.0.4
 zimme:active-route@2.3.2

@@ -1,0 +1,46 @@
+# Meteor packages used by this project, one per line.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+
+# Core
+underscore
+jquery
+spiderable
+accounts-password
+accounts-ui
+reactive-var
+ecmascript
+
+# Community
+mrt:jquery-easing
+iron:router
+momentjs:moment
+aldeed:moment-timezone
+mrt:numeral
+mizzao:bootstrap-3
+dburles:collection-helpers
+zaku:smart-record
+sacha:spin
+zimme:active-route
+aldeed:delete-button
+rajit:bootstrap3-datepicker
+zaku:smart-form
+tsega:bootstrap3-datetimepicker@=3.1.3_3
+aldeed:template-extension
+chhib:selectize-bootstrap-3
+comerc:bs-typeahead
+standard-minifiers
+meteor-base
+mobile-experience
+mongo
+blaze-html-templates
+session
+tracker
+logging
+reload
+random
+ejson
+spacebars
+check
