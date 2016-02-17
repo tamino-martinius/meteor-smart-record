@@ -1,5 +1,5 @@
 <template name="insertaf">
-  <p>This is an example of using <code>autoForm</code> to create a form that inserts into a collection. It uses Bootstrap styles.</p>
+  <p>This is an example of using <code>autoForm</code> to create a form that inserts into a model. It uses Bootstrap styles.</p>
   <div class="row">
     <div class="col-md-6">
       <div class="panel panel-default">
@@ -7,7 +7,7 @@
           <h4>HTML</h4>
         </div>
         <div class="panel-body">
-<pre class="pre-scrollable">&#123;&#123;#autoForm id="afInsertDemo" type="insert" collection=Collections.People&#125;&#125;
+<pre class="pre-scrollable">&#123;&#123;#autoForm id="afInsertDemo" type="insert" model="Person"&#125;&#125;
   &lt;div class="form-group &#123;&#123;#if afFieldIsInvalid name='firstName'&#125;&#125;has-error&#123;&#123;/if&#125;&#125;"&gt;
     &lt;label class="control-label"&gt;&#123;&#123;afFieldLabelText name='firstName'&#125;&#125;&lt;/label&gt;
     &#123;&#123;&gt; afFieldInput name='firstName'&#125;&#125;
@@ -89,7 +89,7 @@ People.allow({
           <h4>Rendered Form</h4>
         </div>
         <div class="panel-body">
-        {{#autoForm id="afInsertDemo" type="insert" collection=Collections.People}}
+        {{#autoForm id="afInsertDemo" type="insert" model="Person"}}
           <div class="form-group {{#if afFieldIsInvalid name='firstName'}}has-error{{/if}}">
             <label class="control-label">{{afFieldLabelText name='firstName'}}</label>
             {{> afFieldInput name='firstName'}}
@@ -132,7 +132,7 @@ People.allow({
             <tr>
               <td>{{firstName}} {{lastName}}</td>
               <td>{{age}}</td>
-              <td style="width: 70px">{{> quickRemoveButton collection=Collections.People _id=this._id class="btn btn-sm btn-danger"}}</td>
+              <td style="width: 70px">{{> quickRemoveButton model="Person" _id=this._id class="btn btn-sm btn-danger"}}</td>
             </tr>
           {{/each}}
         </tbody>

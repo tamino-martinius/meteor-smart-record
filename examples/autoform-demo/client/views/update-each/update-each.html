@@ -21,7 +21,7 @@
         &lt;td&gt;&#123;&#123;this.name&#125;&#125;&lt;/td&gt;
         &lt;td&gt;&#123;&#123;this.tags&#125;&#125;&lt;/td&gt;
         &lt;td&gt;
-        &#123;&#123;#autoForm id=makeUniqueID type="update" collection=Collections.Items doc=this autosave=true&#125;&#125;
+        &#123;&#123;#autoForm id=makeUniqueID type="update" model="Item" doc=this autosave=true&#125;&#125;
           &#123;&#123;&gt; afFormGroup name="tags" label=false&#125;&#125;
         &#123;&#123;/autoForm&#125;&#125;
         &lt;/td&gt;
@@ -106,7 +106,7 @@ if (Meteor.isServer) {
                   <td>{{this.name}}</td>
                   <td>{{this.tags}}</td>
                   <td>
-                  {{#autoForm id=makeUniqueID type="update" collection=Collections.Items doc=this autosave=true}}
+                  {{#autoForm id=makeUniqueID type="update" model="Item" doc=this autosave=true}}
                     {{> afFormGroup name="tags" label=false}}
                   {{/autoForm}}
                   </td>

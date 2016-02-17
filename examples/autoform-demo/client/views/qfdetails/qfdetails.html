@@ -1,15 +1,15 @@
 <template name="qfdetails">
   <p>So what's behind the magic of a quickForm? Well for starters, this:</p>
-<pre>&#123;&#123;&gt; quickForm id="demo" schema=schema&#125;&#125;</pre>
+<pre>&#123;&#123;&gt; quickForm id="demo" model="modelName"&#125;&#125;</pre>
   <p>Is essentially the same as this:</p>
-<pre>&#123;&#123;#autoForm id="demo" schema=schema&#125;&#125;
+<pre>&#123;&#123;#autoForm id="demo" model="modelName"&#125;&#125;
   &#123;&#123;&gt; afQuickFields&#125;&#125;
   &lt;div&gt;
     &lt;button type="submit"&gt;Submit&lt;/button&gt;
   &lt;/div&gt;
 &#123;&#123;/autoForm&#125;&#125;</pre>
   <p>Which is essentially the same as this:</p>
-<pre>&#123;&#123;#autoForm id="demo" schema=schema&#125;&#125;
+<pre>&#123;&#123;#autoForm id="demo" model="modelName"&#125;&#125;
   &#123;&#123;#each afFieldNames&#125;&#125;
     &#123;&#123;&gt; afQuickField name=this options="auto"&#125;&#125;
   &#123;&#123;/each&#125;&#125;
@@ -83,7 +83,7 @@
           <h4>HTML</h4>
         </div>
         <div class="panel-body">
-<pre>&#123;&#123;&gt; quickForm id="fields1" collection="FieldsExamples"&#125;&#125;</pre>
+<pre>&#123;&#123;&gt; quickForm id="fields1" model="FieldsExamples"&#125;&#125;</pre>
         </div>
       </div>
       <div class="alert alert-info">
@@ -96,7 +96,7 @@
           <h4>Rendered Form</h4>
         </div>
         <div class="panel-body">
-          {{> quickForm id="fields1" collection="FieldsExamples"}}
+          {{> quickForm id="fields1" model="FieldsExamples"}}
         </div>
       </div>
     </div>
@@ -111,7 +111,7 @@
                   <h4>HTML</h4>
               </div>
               <div class="panel-body">
-                  <pre>&#123;&#123;&gt; quickForm id="fields2" collection="FieldsExamples" fields="name,contacts"&#125;&#125;</pre>
+                  <pre>&#123;&#123;&gt; quickForm id="fields2" model="FieldsExamples" fields="name,contacts"&#125;&#125;</pre>
               </div>
           </div>
           <div class="alert alert-info">
@@ -124,7 +124,7 @@
                   <h4>Rendered Form</h4>
               </div>
               <div class="panel-body">
-                {{> quickForm id="fields2" collection="FieldsExamples" fields="name,contacts"}}
+                {{> quickForm id="fields2" model="FieldsExamples" fields="name,contacts"}}
               </div>
           </div>
       </div>
@@ -139,7 +139,7 @@
           <h4>HTML</h4>
         </div>
         <div class="panel-body">
-<pre>&#123;&#123;&gt; quickForm id="fields3" collection="FieldsExamples" fields="name,contacts,contacts.$.phone,contacts.$.name"&#125;&#125;</pre>
+<pre>&#123;&#123;&gt; quickForm id="fields3" model="FieldsExamples" fields="name,contacts,contacts.$.phone,contacts.$.name"&#125;&#125;</pre>
         </div>
       </div>
         <div class="alert alert-info">
@@ -152,7 +152,7 @@
           <h4>Rendered Form</h4>
         </div>
         <div class="panel-body">
-          {{> quickForm id="fields3" collection="FieldsExamples" fields="name,contacts,contacts.$.phone,contacts.$.name"}}
+          {{> quickForm id="fields3" model="FieldsExamples" fields="name,contacts,contacts.$.phone,contacts.$.name"}}
         </div>
       </div>
     </div>
@@ -167,7 +167,7 @@
                   <h4>HTML</h4>
               </div>
               <div class="panel-body">
-                  <pre>&#123;&#123;&gt; quickForm id="fields4" collection="FieldsExamples" fields="contacts.0.name,contacts.0.phone"&#125;&#125;</pre>
+                  <pre>&#123;&#123;&gt; quickForm id="fields4" model="FieldsExamples" fields="contacts.0.name,contacts.0.phone"&#125;&#125;</pre>
               </div>
           </div>
           <div class="alert alert-info">
@@ -180,7 +180,7 @@
                   <h4>Rendered Form</h4>
               </div>
               <div class="panel-body">
-                {{> quickForm id="fields4" collection="FieldsExamples" fields="contacts.0.name,contacts.0.phone"}}
+                {{> quickForm id="fields4" model="FieldsExamples" fields="contacts.0.name,contacts.0.phone"}}
               </div>
           </div>
       </div>
@@ -195,7 +195,7 @@
                   <h4>HTML</h4>
               </div>
               <div class="panel-body">
-                  <pre>&#123;&#123;&gt; quickForm id="fields5" collection="FieldsExamples" fields="name,address"&#125;&#125;</pre>
+                  <pre>&#123;&#123;&gt; quickForm id="fields5" model="FieldsExamples" fields="name,address"&#125;&#125;</pre>
               </div>
           </div>
           <div class="alert alert-info">
@@ -208,7 +208,7 @@
                   <h4>Rendered Form</h4>
               </div>
               <div class="panel-body">
-                {{> quickForm id="fields5" collection="FieldsExamples" fields="name,address"}}
+                {{> quickForm id="fields5" model="FieldsExamples" fields="name,address"}}
               </div>
           </div>
       </div>
@@ -223,7 +223,7 @@
           <h4>HTML</h4>
         </div>
         <div class="panel-body">
-<pre>&#123;&#123;&gt; quickForm id="fields6" collection="FieldsExamples" fields="name,address,address.city,address.postalCode"&#125;&#125;</pre>
+<pre>&#123;&#123;&gt; quickForm id="fields6" model="FieldsExamples" fields="name,address,address.city,address.postalCode"&#125;&#125;</pre>
         </div>
       </div>
         <div class="alert alert-info">
@@ -236,7 +236,7 @@
           <h4>Rendered Form</h4>
         </div>
         <div class="panel-body">
-          {{> quickForm id="fields6" collection="FieldsExamples" fields="name,address,address.city,address.postalCode"}}
+          {{> quickForm id="fields6" model="FieldsExamples" fields="name,address,address.city,address.postalCode"}}
         </div>
       </div>
     </div>
@@ -251,7 +251,7 @@
           <h4>HTML</h4>
         </div>
         <div class="panel-body">
-<pre>&#123;&#123;&gt; quickForm id="fields7" collection="FieldsExamples" fields="name,address.street,address.street2,address.city,address.state,address.postalCode"&#125;&#125;</pre>
+<pre>&#123;&#123;&gt; quickForm id="fields7" model="FieldsExamples" fields="name,address.street,address.street2,address.city,address.state,address.postalCode"&#125;&#125;</pre>
         </div>
       </div>
         <div class="alert alert-info">
@@ -264,7 +264,7 @@
           <h4>Rendered Form</h4>
         </div>
         <div class="panel-body">
-          {{> quickForm id="fields7" collection="FieldsExamples" fields="name,address.street,address.street2,address.city,address.state,address.postalCode"}}
+          {{> quickForm id="fields7" model="FieldsExamples" fields="name,address.street,address.street2,address.city,address.state,address.postalCode"}}
         </div>
       </div>
     </div>
@@ -279,7 +279,7 @@
           <h4>HTML</h4>
         </div>
         <div class="panel-body">
-<pre>&#123;&#123;&gt; quickForm id="fields8" collection="FieldsExamples" omitFields="contacts"&#125;&#125;</pre>
+<pre>&#123;&#123;&gt; quickForm id="fields8" model="FieldsExamples" omitFields="contacts"&#125;&#125;</pre>
         </div>
       </div>
         <div class="alert alert-info">
@@ -292,7 +292,7 @@
           <h4>Rendered Form</h4>
         </div>
         <div class="panel-body">
-          {{> quickForm id="fields8" collection="FieldsExamples" omitFields="contacts"}}
+          {{> quickForm id="fields8" model="FieldsExamples" omitFields="contacts"}}
         </div>
       </div>
     </div>

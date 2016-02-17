@@ -6,5 +6,5 @@ Meteor.publish(null, function () {
 });
 
 Meteor.publish("allItems", function () {
-  return Item.find();
+  return Item.cursor();
 });

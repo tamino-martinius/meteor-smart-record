@@ -1,5 +1,5 @@
 Template.updateArrayItem.helpers({
   exampleDoc: function () {
-    return PeopleWithContacts.findOne({firstName: 'Winston'});
+    return PersonWithContacts.find({firstName: 'Winston'});
   }
 });

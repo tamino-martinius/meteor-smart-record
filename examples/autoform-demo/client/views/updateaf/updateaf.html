@@ -1,5 +1,5 @@
 <template name="updateaf">
-  <p>This is an example of using <code>autoForm</code> to create a form that updates a collection. It uses Bootstrap styles.</p>
+  <p>This is an example of using <code>autoForm</code> to create a form that updates a model. It uses Bootstrap styles.</p>
   <p>Toggle the check box to change whether it should automatically update the doc whenever a field changes, or wait until you click Submit.</p>
   <div class="row">
     <div class="col-md-6">
@@ -8,7 +8,7 @@
           <h4>HTML</h4>
         </div>
         <div class="panel-body">
-<pre class="pre-scrollable">&#123;&#123;#autoForm id="afUpdateDemo" type=formType collection=Collections.People doc=selectedPersonDoc autosave=autoSaveMode&#125;&#125;
+<pre class="pre-scrollable">&#123;&#123;#autoForm id="afUpdateDemo" type=formType model="Person" doc=selectedPersonDoc autosave=autoSaveMode&#125;&#125;
   &#123;&#123;&gt; afQuickField name="firstName"&#125;&#125;
   &#123;&#123;&gt; afQuickField name="lastName"&#125;&#125;
   &#123;&#123;&gt; afQuickField name="age"&#125;&#125;
@@ -100,7 +100,7 @@ Template.updateaf.events({
       </div>
     </div>
     <div class="col-md-6">
-      <h2>People List</h2>
+      <h2>Peron List</h2>
       <p>Choose a person to edit. If there are none listed, go to the "Insert autoForm" page and add some.</p>
       <table class="table table-bordered table-condensed">
         <thead>
@@ -110,7 +110,7 @@ Template.updateaf.events({
           </tr>
         </thead>
         <tbody>
-          {{#each people}}
+          {{#each persons}}
             <tr class="person-row {{#if isSelectedPerson}}selected{{/if}}">
               <td>{{firstName}} {{lastName}}</td>
               <td>{{age}}</td>
@@ -126,7 +126,7 @@ Template.updateaf.events({
           <h4>Rendered Form</h4>
         </div>
         <div class="panel-body">
-          {{#autoForm id="afUpdateDemo" type=formType collection=Collections.People doc=selectedPersonDoc autosave=autoSaveMode}}
+          {{#autoForm id="afUpdateDemo" type=formType model="Person" doc=selectedPersonDoc autosave=autoSaveMode}}
             {{> afQuickField name="firstName"}}
             {{> afQuickField name="lastName"}}
             {{> afQuickField name="age"}}

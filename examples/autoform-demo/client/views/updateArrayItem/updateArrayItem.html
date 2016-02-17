@@ -86,7 +86,7 @@ Template.updateArrayItem.helpers({
           <h4>Rendered Form</h4>
         </div>
         <div class="panel-body">
-          {{#autoForm id="updateArrayItemDemo" type="update" collection=Collections.PeopleWithContacts doc=exampleDoc setArrayItems=true}}
+          {{#autoForm id="updateArrayItemDemo" type="update" model="PersonWithContacts" doc=exampleDoc setArrayItems=true}}
             {{> afQuickField name="contacts.2.name"}}
             {{> afQuickField name="contacts.2.phone"}}
             <div class="form-group">

@@ -8,7 +8,7 @@
           <h4>HTML</h4>
         </div>
         <div class="panel-body">
-<pre class="pre-scrollable">&#123;&#123;#autoForm collection="FieldValueIs" type="insert" id="FieldValueIsForm"&#125;&#125;
+<pre class="pre-scrollable">&#123;&#123;#autoForm model="FieldValueIs" type="insert" id="FieldValueIsForm"&#125;&#125;
   &#123;&#123;> afQuickField name="a" options="allowed" noselect=true&#125;&#125;
   &#123;&#123;#if afFieldValueIs name="a" value="foo"&#125;&#125;
     &#123;&#123;> afQuickField name="b"&#125;&#125;
@@ -63,7 +63,7 @@
           <h4>HTML</h4>
         </div>
         <div class="panel-body">
-<pre class="pre-scrollable">&#123;&#123;#autoForm collection="FieldValueContains" type="insert" id="FieldValueContainsForm"&#125;&#125;
+<pre class="pre-scrollable">&#123;&#123;#autoForm model="FieldValueContains" type="insert" id="FieldValueContainsForm"&#125;&#125;
   &#123;&#123;> afQuickField name="a" options="allowed" noselect=true&#125;&#125;
   &#123;&#123;#if afFieldValueContains name="a" value="foo"&#125;&#125;
     &#123;&#123;> afQuickField name="b"&#125;&#125;
@@ -113,7 +113,7 @@
           <h4>HTML</h4>
         </div>
         <div class="panel-body">
-<pre class="pre-scrollable">&#123;&#123;#autoForm collection="FieldValueIs" type="insert" id="reactiveCurrentValueForm"&#125;&#125;
+<pre class="pre-scrollable">&#123;&#123;#autoForm model="FieldValueIs" type="insert" id="reactiveCurrentValueForm"&#125;&#125;
   &#123;&#123;> afQuickField name="a" options="allowed" noselect=true&#125;&#125;
   &#123;&#123;> afQuickField name="c"&#125;&#125;
   &lt;p&gt;The current value of the "A" field is &#123;&#123;currentFieldValue "a"&#125;&#125;.&lt;/p&gt;
@@ -169,7 +169,7 @@ Template.registerHelper("currentFieldValue2", function (fieldName) {
 </template>
 
 <template name="isForm">
-  {{#autoForm collection="FieldValueIs" type="insert" id="FieldValueIsForm"}}
+  {{#autoForm model="FieldValueIs" type="insert" id="FieldValueIsForm"}}
     {{> afQuickField name="a" options="allowed" noselect=true}}
     {{#if afFieldValueIs name="a" value="foo"}}
       {{> afQuickField name="b"}}
@@ -178,7 +178,7 @@ Template.registerHelper("currentFieldValue2", function (fieldName) {
 </template>
 
 <template name="containsForm">
-  {{#autoForm collection="FieldValueContains" type="insert" id="FieldValueContainsForm"}}
+  {{#autoForm model="FieldValueContains" type="insert" id="FieldValueContainsForm"}}
     {{> afQuickField name="a" options="allowed" noselect=true}}
     {{#if afFieldValueContains name="a" value="foo"}}
       {{> afQuickField name="b"}}
@@ -187,7 +187,7 @@ Template.registerHelper("currentFieldValue2", function (fieldName) {
 </template>
 
 <template name="reactiveCurrentValue">
-  {{#autoForm collection="FieldValueIs" type="insert" id="reactiveCurrentValueForm"}}
+  {{#autoForm model="FieldValueIs" type="insert" id="reactiveCurrentValueForm"}}
     {{> afQuickField name="a" options="allowed" noselect=true}}
     {{> afQuickField name="c"}}
     <p>The current value of the "A" field is {{currentFieldValue "a"}}.</p>

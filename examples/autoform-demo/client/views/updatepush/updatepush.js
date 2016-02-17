@@ -1,5 +1,5 @@
 Template.updatepush.helpers({
   exampleDoc: function () {
-    return PeopleWithContacts.findOne({firstName: 'Albert'});
+    return PersonWithContacts.find({firstName: 'Albert'});
   }
 });

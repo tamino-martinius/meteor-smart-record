@@ -1,14 +1,14 @@
 Session.setDefault("autoSaveMode", false);
 
 Template.updateaf.helpers({
-  people: function () {
-    return People.find();
+  persons: function () {
+    return Person.all();
   },
   autoSaveMode: function () {
     return Session.get("autoSaveMode");
   },
   selectedPersonDoc: function () {
-    return People.findOne(Session.get("selectedPersonId"));
+    return Person.find({_id: Session.get("selectedPersonId")});
   },
   isSelectedPerson: function () {
     return Session.equals("selectedPersonId", this._id);

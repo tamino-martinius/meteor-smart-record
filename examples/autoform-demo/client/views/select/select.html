@@ -55,7 +55,7 @@ Template.select.helpers({
           <h4>Rendered Form</h4>
         </div>
         <div class="panel-body">
-          {{#autoForm id="selectForm" schema=Schemas.Select}}
+          {{#autoForm id="selectForm" model="Select"}}
             {{> afFormGroup name="favoriteYear" options=options}}
             <button type="submit" class="btn btn-primary">Submit</button>
           {{/autoForm}}
@@ -121,7 +121,7 @@ Template.select.helpers({
           <h4>Rendered Form</h4>
         </div>
         <div class="panel-body">
-          {{#autoForm id="selectForm2" schema=Schemas.SelectMultiple}}
+          {{#autoForm id="selectForm2" model="SelectMultiple"}}
             {{> afFormGroup name="favoriteYears" options=options}}
             <button type="submit" class="btn btn-primary">Submit</button>
           {{/autoForm}}
