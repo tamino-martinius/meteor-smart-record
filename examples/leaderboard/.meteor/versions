@@ -1,7 +1,3 @@
-aldeed:collection2@2.8.0
-aldeed:collection2-core@1.0.0
-aldeed:schema-deny@1.0.1
-aldeed:schema-index@1.0.1
 aldeed:simple-schema@1.5.3
 autopublish@1.0.4
 autoupdate@1.2.4
@@ -48,7 +44,6 @@ npm-mongo@1.4.39_1
 observe-sequence@1.0.7
 ordered-dict@1.0.4
 promise@0.5.1
-raix:eventemitter@0.1.3
 random@1.0.5
 reactive-dict@1.1.3
 reactive-var@1.0.6
@@ -68,4 +63,4 @@ underscorestring:underscore.string@3.2.3
 url@1.0.5
 webapp@1.2.3
 webapp-hashing@1.0.5
-zaku:smart-record@0.0.4
+zaku:smart-record@0.1.0
