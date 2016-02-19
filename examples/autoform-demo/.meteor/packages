@@ -5,11 +5,7 @@
 
 
 # Core
-underscore
-jquery
-spiderable
-accounts-password
-accounts-ui
+meteor-platform
 reactive-var
 ecmascript
 
@@ -22,25 +18,13 @@ mrt:numeral
 mizzao:bootstrap-3
 dburles:collection-helpers
 zaku:smart-record
+zaku:smart-form
+zaku:smart-form-delete-button
 sacha:spin
 zimme:active-route
-aldeed:delete-button
 rajit:bootstrap3-datepicker
-zaku:smart-form
 tsega:bootstrap3-datetimepicker@=3.1.3_3
 aldeed:template-extension
 chhib:selectize-bootstrap-3
 comerc:bs-typeahead
 standard-minifiers
-meteor-base
-mobile-experience
-mongo
-blaze-html-templates
-session
-tracker
-logging
-reload
-random
-ejson
-spacebars
-check
