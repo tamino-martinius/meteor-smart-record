@@ -329,11 +329,11 @@ Possible options: `type`, `defaultValue`, `autoValue`, `optional`, `min`, `max`
 Address = class Address extends SmartModel {
   static schema() {
     return {
-      street: {type: String, default: ''},
-      postalCode: {type: String, default: ''},
-      city: {type: String, default: '', required: true, minLength: 1},
-      country: {type: String, default: 'Germany'},
-      note: {type: String, default: ''}
+      street: {type: String, defaultValue: ''},
+      postalCode: {type: String, defaultValue: ''},
+      city: {type: String, defaultValue: '', min: 1},
+      country: {type: String, defaultValue: 'Germany'},
+      note: {type: String, defaultValue: '', optional: true}
     }
   }
 }
@@ -553,21 +553,6 @@ Added id alias (eg. `List.listId`) to instance and selector `List.find({listId})
 
 * Has Many scopes are now functions instead of properties to be consistent with custom scopes.
 * Added todos example.
-* Added functions for default values:
-
-  ~~~js
-  List = class List extends SmartModel {
-    static schema() {
-      return {
-        name: {default: this.defaultName}
-      }
-    }
-
-    static defaultName() {
-      // ...
-    }
-  }
-  ~~~
 * Added `dependent: 'destroy'` for `hasOne` and `hasMany` relations.
 * Added callbacks on `save`, `update`, `create`, `destroy`:
   * `beforeCommit`
