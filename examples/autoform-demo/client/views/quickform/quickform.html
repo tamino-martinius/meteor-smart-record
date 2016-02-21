@@ -1,0 +1,78 @@
+<template name="quickform">
+  <p>This shows how a quickForm is rendered given a particular schema. This is a simple quickForm that uses a <code>schema</code> attribute and submits to a server method. There is no collection involved. If you open the browser console and click Submit, you can see information about the AutoForm hooks that are called.</p>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <p>The schema seen here is used to generate and validate the example quickForm on this page. Select one of the predefined examples or adjust the schema yourself and click Update to see what happens.</p>
+          <div class="form-group">
+            <select class="form-control schema-selection">
+              <option value="">Custom</option>
+              {{#each predefinedSchemas}}
+              <option value="{{this.title}}">{{this.title}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="form-group">
+            <textarea class="form-control schema-json" rows="10"></textarea>
+          </div>
+          {{#with tipText}}
+          <div class="alert alert-info">
+          {{this}}
+          </div>
+          {{/with}}
+          <div style="form-group">
+            <button type="button" class="btn btn-primary update-schema-object">Update</button>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>HTML</h4>
+        </div>
+        <div class="panel-body">
+          <div class="form-group">
+            <button type="button" class="btn btn-default btn-sm select-type1 {{#if selectedFormType 1}}active{{/if}}">Bootstrap</button>
+            <button type="button" class="btn btn-default btn-sm select-type2 {{#if selectedFormType 2}}active{{/if}}">Bootstrap Horizontal</button>
+            <button type="button" class="btn btn-default btn-sm select-type3 {{#if selectedFormType 3}}active{{/if}}">Bootstrap Inline</button>
+          </div>
+
+          {{#if selectedFormType 1}}
+          <code>&#123;&#123;&gt; quickForm id="demo" schema=schemaFromJSON type="method" meteormethod="demoSubmission"&#125;&#125;</code>
+          {{else}}
+          {{#if selectedFormType 2}}
+          <code>&#123;&#123;&gt; quickForm id="demo" schema=schemaFromJSON type="method" meteormethod="demoSubmission" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9"&#125;&#125;</code>
+          {{else}}
+          {{#if selectedFormType 3}}
+          <code>&#123;&#123;&gt; quickForm id="demo" schema=schemaFromJSON type="method" meteormethod="demoSubmission" template="bootstrap3-inline" label-class="sr-only" afFieldInput-placeholder="schemaLabel"&#125;&#125;</code>
+          {{/if}}
+          {{/if}}
+          {{/if}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-body">
+        {{#if destroyForm}}
+        {{! this is a wonky workaround for the fact that autoform doesn't handle reactively changing schema attribute, which should be fixed eventually}}
+        {{else}}
+
+        {{#if selectedFormType 1}}
+        {{> quickForm id="demo" schema=schemaFromJSON type="method" meteormethod="demoSubmission"}}
+        {{else}}
+        {{#if selectedFormType 2}}
+        {{> quickForm id="demo" schema=schemaFromJSON type="method" meteormethod="demoSubmission" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9"}}
+        {{else}}
+        {{#if selectedFormType 3}}
+        {{> quickForm id="demo" schema=schemaFromJSON type="method" meteormethod="demoSubmission" template="bootstrap3-inline" label-class="sr-only" afFieldInput-placeholder="schemaLabel"}}
+        {{/if}}
+        {{/if}}
+        {{/if}}
+
+        {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

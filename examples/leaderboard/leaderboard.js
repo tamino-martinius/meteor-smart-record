@@ -5,7 +5,7 @@ Player = class Player extends SmartModel {
   static schema() {
     return {
       name: {type: String},
-      score: {type: Number, default: () => _.random(10) * 5}
+      score: {type: Number, autoValue: () => _.random(10) * 5}
     }
   }
 

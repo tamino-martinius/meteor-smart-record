@@ -101,7 +101,6 @@ address.isNew === true;
 
 address = user.addresses().build();
 address.userId === user.id;
-};
 ~~~
 
 ### Create
@@ -322,9 +321,9 @@ Profile.males().young().last(selector, options);
 
 ### Schema
 
-Define the writeable columns and types.
+Define the writeable columns and types. The schema uses the syntax of [aldeed:simple-schema](https://atmospherejs.com/aldeed/simple-schema).
 
-Possible options: `type`, `default`, `required`, `minLength`, `maxLength`, `minNumber`, `maxNumber`
+Possible options: `type`, `defaultValue`, `autoValue`, `optional`, `min`, `max`
 
 ~~~js
 Address = class Address extends SmartModel {
@@ -539,6 +538,12 @@ profile.name === 'Foo Bar';
 ~~~
 
 ## Changelog
+
+`0.1.0` `2016-02-21`
+
+Used the [aldeed:simple-schema](https://atmospherejs.com/aldeed/simple-schema) package to define schema and validation.
+
+Added [sample](https://github.com/tamino-martinius/meteor-smart-record/tree/master/examples/autoform-demo) how to use this package with [zaku:smart-form](https://github.com/tamino-martinius/meteor-smart-form).
 
 `0.0.4` `2016-02-14`
 

@@ -197,18 +197,18 @@ group('SmartModel.scope()', (test) => {
       gender: 'female',
       age: 40
     });
-    let testedScope = Profile;
+    let testedScope = () => Profile;
     returnedIds = function() {
-      return testedScope.all().map(x => x.id);
+      return testedScope().all().map(x => x.id);
     };
     count = function() {
-      return testedScope.count();
+      return testedScope().count();
     };
     test.equal(count(), 5, context);
 
     it = 'returns just matching records for the scope';
     {
-      testedScope = Profile.males();
+      testedScope = () => Profile.males();
       test.equal(count(), 2, it);
       test.include(returnedIds(), youngMale.id, it);
       test.include(returnedIds(), oldMale.id, it);
@@ -216,7 +216,7 @@ group('SmartModel.scope()', (test) => {
 
     it = 'returns the same records if the same scope is multiple times';
     {
-      testedScope = Profile.males().males();
+      testedScope = () => Profile.males().males();
       test.equal(count(), 2, it);
       test.include(returnedIds(), youngMale.id, it);
       test.include(returnedIds(), oldMale.id, it);
@@ -224,7 +224,7 @@ group('SmartModel.scope()', (test) => {
 
     it = 'returns matching records for complex queries';
     {
-      testedScope = Profile.young();
+      testedScope = () => Profile.young();
       test.equal(count(), 2, it);
       test.include(returnedIds(), youngMale.id, it);
       test.include(returnedIds(), youngFemale.id, it);
@@ -232,7 +232,7 @@ group('SmartModel.scope()', (test) => {
 
     it = 'returns records witch matches all scopes when chaining them';
     {
-      testedScope = Profile.young().females();
+      testedScope = () => Profile.young().females();
       test.equal(count(), 1, it);
       test.include(returnedIds(), youngFemale.id, it);
     }
@@ -245,7 +245,7 @@ group('SmartModel.scope()', (test) => {
 
     it = 'returns no records when chained scopes do not overlap';
     {
-      testedScope = Profile.males().females();
+      testedScope = () => Profile.males().females();
       test.equal(count(), 0, 'Count equals 0');
     }
   }
@@ -870,7 +870,8 @@ group('SmartModel#validate()', (test) => {
     {
       model = Profile.build();
       model.save();
-      test.length(model.errors, 2, it);
+      test.length(model.errors, 1, it);
+      test.equal(model.errors[0].type, 'required', it);
     }
 
     it = 'is one error less when lastname is present';
@@ -878,6 +879,7 @@ group('SmartModel#validate()', (test) => {
       model.lastname = '';
       model.save();
       test.length(model.errors, 1, it);
+      test.equal(model.errors[0].type, 'minString', it);
     }
 
     it = 'returns no error if lastname is valid';
