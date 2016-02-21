@@ -84,6 +84,6 @@ url@1.0.5
 webapp@1.2.3
 webapp-hashing@1.0.5
 zaku:smart-form@1.0.0
-zaku:smart-form-delete-button@1.0.0
+zaku:smart-form-delete-button@1.0.1
 zaku:smart-record@0.1.0
 zimme:active-route@2.3.2
