@@ -539,9 +539,11 @@ profile.name === 'Foo Bar';
 
 ## Changelog
 
-`0.1.0` `2016-02-??`
+`0.1.0` `2016-02-21`
 
 Used the [aldeed:simple-schema](https://atmospherejs.com/aldeed/simple-schema) package to define schema and validation.
+
+Added [sample](https://github.com/tamino-martinius/meteor-smart-record/tree/master/examples/autoform-demo) how to use this package with [zaku:smart-form](https://github.com/tamino-martinius/meteor-smart-form).
 
 `0.0.4` `2016-02-14`
 
