@@ -1,9 +1,7 @@
-const base = Meteor.isClient ? window : root;
-
-base.Company = class Company extends SmartModel {
-  static hasMany() {
+global.Company = class Company extends SmartModel {
+  static get hasMany() {
     return {
-      users: {}
+      accounts: {}
     }
   }
 }
@@ -14,40 +12,40 @@ Company.allow({
   remove: function() { return true; }
 });
 
-base.User = class User extends SmartModel {
-  static schema() {
+global.Account = class Account extends SmartModel {
+  static get schema() {
     return {
       username: {type: String, min: 2, max: 20}
     }
   }
 
-  static belongsTo() {
+  static get belongsTo() {
     return {
       company: {optional: true}
     }
   }
 
-  static hasOne() {
+  static get hasOne() {
     return {
       profile: {dependent: 'destroy'}
     }
   }
 
-  static hasMany() {
+  static get hasMany() {
     return {
       addresses: {dependent: 'destroy'}
     }
   }
 }
 
-User.allow({
+Account.allow({
   insert: function() { return true; },
   update: function() { return true; },
   remove: function() { return true; }
 });
 
-base.Address = class Address extends SmartModel {
-  static schema() {
+global.Address = class Address extends SmartModel {
+  static get schema() {
     return {
       street: {type: String, optional: true, defaultValue: ''},
       postalCode: {type: String, optional: true, defaultValue: ''},
@@ -57,9 +55,9 @@ base.Address = class Address extends SmartModel {
     }
   }
 
-  static belongsTo() {
+  static get belongsTo() {
     return {
-      user: {optional: true}
+      account: {optional: true}
     }
   }
 }
@@ -70,8 +68,8 @@ Address.allow({
   remove: function() { return true; }
 });
 
-base.Profile = class Profile extends SmartModel {
-  static schema() {
+global.Profile = class Profile extends SmartModel {
+  static get schema() {
     return {
       gender: {type: String, optional: true, defaultValue: ''},
       firstname: {type: String, optional: true, defaultValue: ''},
@@ -82,31 +80,31 @@ base.Profile = class Profile extends SmartModel {
     }
   }
 
-  static belongsTo() {
+  static get belongsTo() {
     return {
-      user: {optional: true}
+      account: {optional: true}
     }
   }
 
-  static males() {
+  static get males() {
     return this.scope({
       selector: {gender: 'male'}
     });
   }
 
-  static females() {
+  static get females() {
     return this.scope({
       selector: {gender: 'female'}
     });
   }
 
-  static young() {
+  static get young() {
     return this.scope({
       selector: {age: {$lte: 18}}
     });
   }
 
-  static old() {
+  static get old() {
     return this.scope({
       selector: {age: {$gt: 18}}
     });

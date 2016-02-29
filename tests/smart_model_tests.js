@@ -2,7 +2,7 @@ let context, it;
 
 reset = function() {
   Company.destroyAll();
-  User.destroyAll();
+  Account.destroyAll();
   Profile.destroyAll();
   Address.destroyAll();
 };
@@ -59,11 +59,11 @@ group('SmartModel.create()', (test) => {
   test.isTrue(address.isPersistent, it);
 });
 
-group('SmartModel.modelName()', (test) => {
+group('SmartModel.modelName', (test) => {
   it = 'returns an name equal to the name of the class';
   {
     const model = class Foo extends SmartModel {};
-    test.equal(model.modelName(), 'Foo', it);
+    test.equal(model.modelName, 'Foo', it);
   }
 
   it = 'returns the private model name if present';
@@ -73,47 +73,47 @@ group('SmartModel.modelName()', (test) => {
         return 'Bar';
       }
     };
-    test.equal(model.modelName(), 'Bar', it);
+    test.equal(model.modelName, 'Bar', it);
   }
 });
 
 group('SmartModel.belongsTo()', (test) => {
-  const address = Address.build({userId: 'a'});
+  const address = Address.build({accountId: 'a'});
 
   it = 'adds the foreign keys automatically to the schema';
-  test.equal(address.userId, 'a', it);
+  test.equal(address.accountId, 'a', it);
 
   it = 'creates an setter for the relation';
   {
-    address.user = {id: 'b'};
-    test.equal(address.userId, 'b', it);
+    address.account = {id: 'b'};
+    test.equal(address.accountId, 'b', it);
   }
 
-  context = 'when there is an user';
+  context = 'when there is an account';
   {
-    user = User.create({username: 'username'});
-    test.isTrue(user.isPersistent, context);
+    account = Account.create({username: 'username'});
+    test.isTrue(account.isPersistent, context);
 
     it = 'can set relation with model instance';
     {
-      address.user = user;
-      test.equal(address.userId, user.id, 'foreignKey is set by relation');
+      address.account = account;
+      test.equal(address.accountId, account.id, 'foreignKey is set by relation');
     }
 
-    it = 'returns user through relation';
+    it = 'returns account through relation';
     {
-      test.isNotNull(address.user, it);
-      test.isNotUndefined(address.user, it);
-      test.equal(address.user.id, user.id, it);
+      test.isNotNull(address.account, it);
+      test.isNotUndefined(address.account, it);
+      test.equal(address.account.id, account.id, it);
     }
   }
 });
 
 group('SmartModel.hasMany()', (test) => {
-  context = 'when there is an user';
+  context = 'when there is an account';
   {
-    const user = User.create({username: 'username'});
-    test.isTrue(user.isPersistent, context);
+    const account = Account.create({username: 'username'});
+    test.isTrue(account.isPersistent, context);
 
     context = 'when there is an non related address';
     {
@@ -121,20 +121,20 @@ group('SmartModel.hasMany()', (test) => {
       test.isTrue(address.isPersistent, context);
 
       it = 'does not return the address through relation';
-      test.equal(user.addresses().count(), 0, it);
+      test.equal(account.addresses.count(), 0, it);
 
       context = 'when there are multiple related addresses';
       {
-        const address1 = Address.create({userId: user.id});
-        const address2 = Address.create({userId: user.id});
+        const address1 = Address.create({accountId: account.id});
+        const address2 = Address.create({accountId: account.id});
         test.isTrue(address1.isPersistent, context);
         test.isTrue(address2.isPersistent, context);
 
-        it = 'retrun the addresses related to the user';
+        it = 'retrun the addresses related to the account';
         {
-          test.equal(user.addresses().count(), 2, it);
-          test.equal(user.addresses().first().id, address1.id, it);
-          test.equal(user.addresses().last().id, address2.id, it);
+          test.equal(account.addresses.count(), 2, it);
+          test.equal(account.addresses.first().id, address1.id, it);
+          test.equal(account.addresses.last().id, address2.id, it);
         }
       }
     }
@@ -142,31 +142,31 @@ group('SmartModel.hasMany()', (test) => {
 });
 
 group('SmartModel.hasOne()', (test) => {
-  context = 'when there is an user';
+  context = 'when there is an account';
   {
-    const user = User.create({username: 'username'});
-    test.isTrue(user.isPersistent, context);
+    const account = Account.create({username: 'username'});
+    test.isTrue(account.isPersistent, context);
 
-    it = 'does not retrun an profile for this user';
-    test.isUndefined(user.profile, it);
+    it = 'does not retrun an profile for this account';
+    test.isUndefined(account.profile, it);
 
     context = 'when there is an non related profile';
     {
       const someOtherProfile = Profile.create({lastname: 'test'});
       test.isTrue(someOtherProfile.isPersistent, context);
 
-      it = 'does not retrun an profile for this user';
-      test.isUndefined(user.profile, it);
+      it = 'does not retrun an profile for this account';
+      test.isUndefined(account.profile, it);
 
       context = 'when there is an related profile';
       {
-        const profile = Profile.create({userId: user.id, lastname: 'test'});
+        const profile = Profile.create({accountId: account.id, lastname: 'test'});
         test.isTrue(profile.isPersistent, context);
 
         it = 'returns the related profile';
         {
-          test.isNotUndefined(user.profile);
-          test.equal(user.profile.id, profile.id, it);
+          test.isNotUndefined(account.profile);
+          test.equal(account.profile.id, profile.id, it);
         }
       }
     }
@@ -208,7 +208,7 @@ group('SmartModel.scope()', (test) => {
 
     it = 'returns just matching records for the scope';
     {
-      testedScope = () => Profile.males();
+      testedScope = () => Profile.males;
       test.equal(count(), 2, it);
       test.include(returnedIds(), youngMale.id, it);
       test.include(returnedIds(), oldMale.id, it);
@@ -216,7 +216,7 @@ group('SmartModel.scope()', (test) => {
 
     it = 'returns the same records if the same scope is multiple times';
     {
-      testedScope = () => Profile.males().males();
+      testedScope = () => Profile.males.males;
       test.equal(count(), 2, it);
       test.include(returnedIds(), youngMale.id, it);
       test.include(returnedIds(), oldMale.id, it);
@@ -224,7 +224,7 @@ group('SmartModel.scope()', (test) => {
 
     it = 'returns matching records for complex queries';
     {
-      testedScope = () => Profile.young();
+      testedScope = () => Profile.young;
       test.equal(count(), 2, it);
       test.include(returnedIds(), youngMale.id, it);
       test.include(returnedIds(), youngFemale.id, it);
@@ -232,20 +232,20 @@ group('SmartModel.scope()', (test) => {
 
     it = 'returns records witch matches all scopes when chaining them';
     {
-      testedScope = () => Profile.young().females();
+      testedScope = () => Profile.young.females;
       test.equal(count(), 1, it);
       test.include(returnedIds(), youngFemale.id, it);
     }
 
     it = 'returns records which matches scope and queries when searching within scope';
     {
-      test.equal(Profile.young().count({gender: 'female'}), 1, it);
-      test.equal(Profile.young().find({gender: 'female'}).id, youngFemale.id, it);
+      test.equal(Profile.young.count({gender: 'female'}), 1, it);
+      test.equal(Profile.young.find({gender: 'female'}).id, youngFemale.id, it);
     }
 
     it = 'returns no records when chained scopes do not overlap';
     {
-      testedScope = () => Profile.males().females();
+      testedScope = () => Profile.males.females;
       test.equal(count(), 0, 'Count equals 0');
     }
   }
@@ -819,7 +819,7 @@ group('SmartModel#attributes()', (test) => {
         city: '',
         country: 'Germany',
         note: '',
-        userId: null,
+        accountId: null,
         id: undefined
       };
       test.isTrue(_.isEqual(subject(), expectation), it);
@@ -854,7 +854,7 @@ group('SmartModel#attributes()', (test) => {
         city: '',
         country: 'Germany',
         note: '',
-        userId: null
+        accountId: null
       };
       test.isTrue(_.isEqual(subject(), expectation), it);
     }
@@ -945,11 +945,11 @@ group('SmartModel#save()', (test) => {
 group('SmartModel#destroy()', (test) => {
   context = 'when there are some records';
   {
-    const user = User.create();
-    const profile = Profile.create({userId: user.id, lastname: 'test'});
-    const address1 = Address.create({street: 'a', userId: user.id});
-    const address2 = Address.create({street: 'b', userId: user.id});
-    const address3 = Address.create({street: 'c', userId: user.id});
+    const account = Account.create();
+    const profile = Profile.create({accountId: account.id, lastname: 'test'});
+    const address1 = Address.create({street: 'a', accountId: account.id});
+    const address2 = Address.create({street: 'b', accountId: account.id});
+    const address3 = Address.create({street: 'c', accountId: account.id});
     test.isTrue(address1.isPersistent, context);
     test.isTrue(address2.isPersistent, context);
     test.isTrue(address3.isPersistent, context);
@@ -963,8 +963,8 @@ group('SmartModel#destroy()', (test) => {
 
     it = 'also removes dependent records';
     {
-      user.destroy();
-      test.equal(User.count(), 0, context);
+      account.destroy();
+      test.equal(Account.count(), 0, context);
       test.equal(Address.count(), 0, context);
       test.equal(Profile.count(), 0, context);
     }

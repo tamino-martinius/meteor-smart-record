@@ -15,6 +15,7 @@ Package.onUse(function (api) {
   api.imply('dburles:mongo-collection-instances'    , cs);
 
   api.use('mongo'                                   , cs);
+  api.use('check'                                   , cs);
   api.use('underscorestring:underscore.string@3.2.3', cs);
   api.use('aldeed:simple-schema@1.5.3'              , cs);
   api.use('dburles:mongo-collection-instances@0.1.3', cs);
