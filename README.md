@@ -548,6 +548,7 @@ Required now Meteor 1.3
 `defaultScope`, `schema`, `modelName`, `collection`, `collectionName`, `belongsTo`, `hasOne`, `hasMany` are now static getters. Don't call them as function anymore.
 
 * Added static init method to initialize default scopes for schema
+* Added `localCollection` class property to create models for **client** or **server** only models.
 
 `0.1.0` `2016-02-21`
 
