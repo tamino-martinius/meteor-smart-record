@@ -549,6 +549,7 @@ Required now Meteor 1.3
 
 * Added static init method to initialize default scopes for schema
 * Added `localCollection` class property to create models for **client** or **server** only models.
+* Added `attrAccessors` to define properties which can passed to the model which are not passed to the database.
 
 `0.1.0` `2016-02-21`
 
