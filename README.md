@@ -13,21 +13,16 @@ Smart Record gives you the ability to:
 ### Roadmap / Where can i contribute
 * Fix **typos**
 * Add more **examples**
-* Add **property accessors** which are read/write but not stored to the database
+* There are already many **tests**, but not every test case is covered.
 * `where`/`all` calls should be cached and refreshed by `reload()`
 * `includes` prefetches relations with two db queries *(fetch records => pluck ids => fetch related records by ids)* instead of one query per related model.
 
   `User.includes({address: {}})`, `Profile.includes({user: {address: {}}})`
 * Add **sorting**  to `scopes`
 * Add order functions `Profile.males.order({name: 1})`
-* Automatically generate `scopes` from schema `Address.findByCountry('Germany')`, `Address.havingCountry('Germany').all()`
-* There are already many **tests**, but not every test case is covered.
-* Improve the code **documentation**.
 * **Migrations**
 * Record **versioning**
-* Support for **other databases** like Postgres
-
-  I'm currently using **Postgres** with Meteor in production with knex on the server side and minimongo on the client side. This works fine, but the queries on client and server are completely different. An universal model on both sides with the same query language would be perfect.
+* Support for **Apollo**
 
 ## TOC
 * [Naming Conventions](#naming-conventions)
