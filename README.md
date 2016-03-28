@@ -534,7 +534,7 @@ profile.name === 'Foo Bar';
 
 ## Changelog
 
-`0.2.0` `2016-03-??`
+`0.2.0` `2016-03-28`
 
 Required now Meteor 1.3
 
