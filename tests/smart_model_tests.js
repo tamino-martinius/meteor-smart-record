@@ -891,40 +891,40 @@ group('SmartModel#validate()', (test) => {
   }
 });
 
-group('SmartModel#touch()', (test) => {
-  context = 'when a new model is build';
-  {
-    const model = Address.build();
+// group('SmartModel#touch()', (test) => {
+//   context = 'when a new model is build';
+//   {
+//     const model = Address.build();
 
-    it = 'has no createdAt and updatedAt is defined';
-    {
-      test.isUndefined(model.createdAt, it);
-      test.isUndefined(model.updatedAt, it);
-    }
+//     it = 'has no createdAt and updatedAt is defined';
+//     {
+//       test.isUndefined(model.createdAt, it);
+//       test.isUndefined(model.updatedAt, it);
+//     }
 
-    context = 'when model is touched';
-    {
-      model.touch();
-      const createdAt = model.createdAt;
-      const updatedAt = model.updatedAt;
+//     context = 'when model is touched';
+//     {
+//       model.touch();
+//       const createdAt = model.createdAt;
+//       const updatedAt = model.updatedAt;
 
-      it = 'sets the timestamps';
-      {
-        test.isNotUndefined(model.createdAt, it);
-        test.isNotUndefined(model.updatedAt, it);
-      }
+//       it = 'sets the timestamps';
+//       {
+//         test.isNotUndefined(model.createdAt, it);
+//         test.isNotUndefined(model.updatedAt, it);
+//       }
 
-      model.touch();
-      sleep(100);
+//       model.touch();
+//       sleep(100);
 
-      it = 'does not change createdAt';
-      test.equal(model.createdAt, createdAt, it);
+//       it = 'does not change createdAt';
+//       test.equal(model.createdAt, createdAt, it);
 
-      it = 'changes updatedAt';
-      test.notEqual(model.updatedAt, updatedAt, it);
-    }
-  }
-});
+//       it = 'changes updatedAt';
+//       test.notEqual(model.updatedAt, updatedAt, it);
+//     }
+//   }
+// });
 
 group('SmartModel#save()', (test) => {
   context = 'when a new model is build';
