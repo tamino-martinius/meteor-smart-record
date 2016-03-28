@@ -18,7 +18,6 @@ chhib:selectize-bootstrap-3@0.0.1
 coffeescript@1.0.15
 comerc:bs-typeahead@1.0.2
 dburles:collection-helpers@1.0.4
-dburles:mongo-collection-instances@0.1.3
 ddp@1.2.3
 ddp-client@1.2.3
 ddp-common@1.2.3
