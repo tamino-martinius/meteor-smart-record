@@ -13,21 +13,16 @@ Smart Record gives you the ability to:
 ### Roadmap / Where can i contribute
 * Fix **typos**
 * Add more **examples**
-* Add **property accessors** which are read/write but not stored to the database
+* There are already many **tests**, but not every test case is covered.
 * `where`/`all` calls should be cached and refreshed by `reload()`
 * `includes` prefetches relations with two db queries *(fetch records => pluck ids => fetch related records by ids)* instead of one query per related model.
 
   `User.includes({address: {}})`, `Profile.includes({user: {address: {}}})`
 * Add **sorting**  to `scopes`
-* Add order functions `Profile.males().order({name: 1})`
-* Automatically generate `scopes` from schema `Address.findByCountry('Germany')`, `Address.havingCountry('Germany').all()`
-* There are already many **tests**, but not every test case is covered.
-* Improve the code **documentation**.
+* Add order functions `Profile.males.order({name: 1})`
 * **Migrations**
 * Record **versioning**
-* Support for **other databases** like Postgres
-
-  I'm currently using **Postgres** with Meteor in production with knex on the server side and minimongo on the client side. This works fine, but the queries on client and server are completely different. An universal model on both sides with the same query language would be perfect.
+* Support for **Apollo**
 
 ## TOC
 * [Naming Conventions](#naming-conventions)
@@ -99,7 +94,7 @@ Initializes new record from relation while maintaining the current scope.
 address = Address.build({street: '1st street'});
 address.isNew === true;
 
-address = user.addresses().build();
+address = user.addresses.build();
 address.userId === user.id;
 ~~~
 
@@ -134,7 +129,7 @@ Address.create({
 
 ~~~js
 Address = class Address extends SmartModel {
-  static belongsTo() {
+  static get belongsTo() {
     return {
       user: {}
     }
@@ -153,18 +148,18 @@ address.userId === user.id;
 
 ~~~js
 User = class User extends SmartModel {
-  static hasMany() {
+  static get hasMany() {
     return {
       addresses: {}
     }
   }
 };
 
-user.addresses().all();
-address = user.addresses().create();
+user.addresses.all();
+address = user.addresses.create();
 
 User = class User extends SmartModel {
-  static hasMany() {
+  static get hasMany() {
     return {
       addresses: {dependent: 'destroy'}
     }
@@ -176,7 +171,7 @@ User = class User extends SmartModel {
 
 ~~~js
 User = class User extends SmartModel {
-  static hasOne() {
+  static get hasOne() {
     return {
       profile: {}
     }
@@ -186,7 +181,7 @@ User = class User extends SmartModel {
 user.profile;
 
 User = class User extends SmartModel {
-  static hasOne() {
+  static get hasOne() {
     return {
       profile: {dependent: 'destroy'}
     }
@@ -200,19 +195,19 @@ User = class User extends SmartModel {
 
 ~~~js
 Profile = class Profile extends SmartModel {
-  static males() {
+  static get males() {
     return this.scope({selector: {gender: 'male'}});
   }
 
-  static females() {
+  static get females() {
     return this.scope({selector: {gender: 'female'}});
   }
 
-  static young() {
+  static get young() {
     return this.scope({selector: {age: {$lte: 18}}});
   }
 
-  static old() {
+  static get old() {
     return this.scope({selector: {age: {$gt: 18}}});
   }
 
@@ -225,22 +220,22 @@ Profile = class Profile extends SmartModel {
 ### Query relative to scope
 
 ~~~js
-Profile.males().all();
-Profile.males().where({age: 21});
+Profile.males.all();
+Profile.males.where({age: 21});
 ~~~
 
 ### Build from scope
 
 ~~~js
-profile = Profile.males().build();
+profile = Profile.males.build();
 profile.gender === 'male';
 ~~~
 
 ### Scope chaining
 
 ~~~js
-Profile.males().young();
-Profile.males().young().where({});
+Profile.males.young;
+Profile.males.young.where({});
 ~~~
 
 ## Searching
@@ -253,7 +248,7 @@ Retruns one matching record (equivalent to findOne from Meteor.Collection).
 
 ~~~js
 Address.find(selector, options);
-Profile.males().young().find(selector, options);
+Profile.males.young.find(selector, options);
 ~~~
 
 ### Cursor
@@ -262,7 +257,7 @@ Retruns an cursor (equivalent to find from Meteor.Collection).
 
 ~~~js
 Address.cursor(selector, options);
-Profile.males().young().cursor(selector, options);
+Profile.males.young.cursor(selector, options);
 ~~~
 
 ### Where
@@ -271,7 +266,7 @@ Retruns an array of records (equivalent to find.fetch from Meteor.Collection).
 
 ~~~js
 Address.where(selector, options);
-Profile.males().young().where(selector, options);
+Profile.males.young.where(selector, options);
 ~~~
 
 ### Count
@@ -280,7 +275,7 @@ Retruns the count of the matching records (equivalent to find.count from Meteor.
 
 ~~~js
 Address.count(selector, options);
-Profile.males().young().count(selector, options);
+Profile.males.young.count(selector, options);
 ~~~
 
 ### HasAny
@@ -289,7 +284,7 @@ Checks if there is any matching item with selector.
 
 ~~~js
 Address.hasAny(selector);
-Profile.males().young().hasAny(selector);
+Profile.males.young.hasAny(selector);
 ~~~
 
 ### IsEmpty
@@ -298,7 +293,7 @@ Checks if there is no matching item with selector.
 
 ~~~js
 Address.isEmpty(selector);
-Profile.males().young().isEmpty(selector);
+Profile.males.young.isEmpty(selector);
 ~~~
 
 ### First
@@ -307,7 +302,7 @@ Retruns the first matching record regarding the creation order.
 
 ~~~js
 Address.first(selector, options);
-Profile.males().young().first(selector, options);
+Profile.males.young.first(selector, options);
 ~~~
 
 ### Last
@@ -316,7 +311,7 @@ Retruns the last matching record regarding the creation order.
 
 ~~~js
 Address.last(selector, options);
-Profile.males().young().last(selector, options);
+Profile.males.young.last(selector, options);
 ~~~
 
 ### Schema
@@ -327,7 +322,7 @@ Possible options: `type`, `defaultValue`, `autoValue`, `optional`, `min`, `max`
 
 ~~~js
 Address = class Address extends SmartModel {
-  static schema() {
+  static get schema() {
     return {
       street: {type: String, defaultValue: ''},
       postalCode: {type: String, defaultValue: ''},
@@ -344,8 +339,8 @@ Address = class Address extends SmartModel {
 The class name (model.name) is set automatically while defining a Class. Scopes return a anonymous Class. Please get the model/Class name with this function.
 
 ~~~js
-Profile.modelName() === Profile.males().modelName(); // = Profile
-Profile.name !== Profile.males().name; // = _class
+Profile.modelName === Profile.males.modelName; // = Profile
+Profile.name !== Profile.males.name; // = _class
 ~~~
 
 ## Instance Attributes
@@ -390,7 +385,7 @@ item = Item.find({itemId});
 The itemType is the same as modelName - just on an instance level.
 
 ~~~js
-Profile.first().itemType === Profile.males().first().itemType;
+Profile.first().itemType === Profile.males.first().itemType;
 ~~~
 
 ### isValid
@@ -518,7 +513,7 @@ address.update({
 
 ~~~js
 Profile = class Profile extends SmartModel {
-  static schema() {
+  static get schema() {
     return {
       firstname: {type: String},
       lastname: {type: String}
@@ -538,6 +533,18 @@ profile.name === 'Foo Bar';
 ~~~
 
 ## Changelog
+
+`0.2.0` `2016-03-28`
+
+Required now Meteor 1.3
+
+**Breaking Changes**
+
+`defaultScope`, `schema`, `modelName`, `collection`, `collectionName`, `belongsTo`, `hasOne`, `hasMany` are now static getters. Don't call them as function anymore.
+
+* Added static init method to initialize default scopes for schema
+* Added `localCollection` class property to create models for **client** or **server** only models.
+* Added `attrAccessors` to define properties which can passed to the model which are not passed to the database.
 
 `0.1.0` `2016-02-21`
 

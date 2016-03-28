@@ -1,7 +1,7 @@
 Package.describe({
   name: "zaku:smart-record",
   summary: "Rails like models using ES6.",
-  version: "0.1.0",
+  version: "0.2.0",
   git: "https://github.com/tamino-martinius/meteor-smart-record.git"
 });
 
@@ -10,14 +10,13 @@ s = 'server';
 cs = [c, s];
 
 Package.onUse(function (api) {
-  api.versionsFrom("METEOR@1.2.1");
+  api.versionsFrom("METEOR@1.3");
   api.imply('aldeed:simple-schema'                  , cs);
-  api.imply('dburles:mongo-collection-instances'    , cs);
 
   api.use('mongo'                                   , cs);
+  api.use('check'                                   , cs);
   api.use('underscorestring:underscore.string@3.2.3', cs);
   api.use('aldeed:simple-schema@1.5.3'              , cs);
-  api.use('dburles:mongo-collection-instances@0.1.3', cs);
   api.use('underscore'                              , cs);
   api.use('ecmascript'                              , cs);
 
