@@ -1,3 +1,6 @@
+> **Deprication Warning:**
+> This package will be discontinued and replaced by [next-model](https://github.com/tamino-martinius/node-next-model) npm package with Meteor connector
+
 # SmartRecord
 
 Rails like models using **ES6**.
